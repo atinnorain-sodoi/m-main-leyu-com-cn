@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>华体会 · 再次遇见 | 杂志专题</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f1f7f9;
+            color: #1d2a35;
+            line-height: 1.7;
+            padding: 0 20px 40px;
+        }
+        .page-wrap {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 32px;
+            box-shadow: 0 12px 40px rgba(27, 74, 80, 0.06);
+            overflow: hidden;
+            margin-top: 24px;
+        }
+
+        /* --- 首页横幅 hero --- */
+        .hero {
+            background: linear-gradient(145deg, #e2f0f2 0%, #cbe3e8 100%);
+            padding: 56px 28px 48px;
+            text-align: left;
+            position: relative;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle at 100% 100%, rgba(39, 119, 120, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: #1f6c6b;
+            color: white;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            padding: 4px 14px;
+            border-radius: 30px;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+            font-weight: 500;
+            background: #2f7c7b;
+        }
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #093b3f;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+        .hero p {
+            font-size: 1.05rem;
+            color: #2f5359;
+            max-width: 620px;
+            margin-bottom: 0;
+            opacity: 0.85;
+        }
+
+        /* --- 背景说明卡片 --- */
+        .context-card {
+            background: #f4fafb;
+            border-left: 5px solid #3a8f92;
+            margin: 24px 28px 20px;
+            padding: 22px 26px;
+            border-radius: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 18px;
+            align-items: baseline;
+        }
+        .context-card .label {
+            font-size: 0.8rem;
+            background: #d1e6e9;
+            padding: 3px 14px;
+            border-radius: 40px;
+            color: #1b555a;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        .context-card .text {
+            flex: 1;
+            min-width: 200px;
+            color: #1a4449;
+            font-size: 0.95rem;
+        }
+
+        /* --- 网格卡片 (三段自然介绍) --- */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 12px 28px 32px;
+        }
+        .card-item {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 24px 22px 28px;
+            box-shadow: 0 4px 18px rgba(41, 107, 112, 0.06);
+            transition: transform 0.2s ease, box-shadow 0.25s ease;
+            border: 1px solid #e1f0f2;
+        }
+        .card-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px rgba(31, 92, 96, 0.08);
+            border-color: #bcd9de;
+        }
+        .card-icon {
+            display: inline-flex;
+            background: #d5edf0;
+            width: 44px;
+            height: 44px;
+            border-radius: 18px;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            color: #1d6d6b;
+            margin-bottom: 16px;
+        }
+        .card-item h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #093f42;
+            margin-bottom: 10px;
+            letter-spacing: -0.01em;
+        }
+        .card-item p {
+            font-size: 0.95rem;
+            color: #2f555a;
+            line-height: 1.65;
+        }
+        .card-item .tag {
+            display: inline-block;
+            margin-top: 14px;
+            background: #e5f4f5;
+            padding: 2px 16px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            color: #216b6b;
+            font-weight: 500;
+        }
+
+        /* --- 自然嵌入链接的段落 --- */
+        .link-embed-area {
+            padding: 10px 28px 8px;
+            font-size: 0.98rem;
+            color: #204a4e;
+        }
+        .link-embed-area p {
+            margin-bottom: 12px;
+            max-width: 760px;
+        }
+        .link-embed-area a {
+            color: #1c7877;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid #acd3d6;
+            transition: border 0.15s, color 0.15s;
+        }
+        .link-embed-area a:hover {
+            border-bottom-color: #1c7877;
+            color: #0b4f52;
+        }
+
+        /* --- FAQ 摘要 --- */
+        .faq-mini {
+            margin: 18px 28px 20px;
+            background: #f2fafb;
+            border-radius: 24px;
+            padding: 20px 24px 18px;
+        }
+        .faq-mini h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #0e5559;
+            letter-spacing: 0.02em;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .faq-mini h4 span {
+            background: #b9dbdf;
+            padding: 0 10px;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            color: #124f50;
+        }
+        .faq-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px 22px;
+            font-size: 0.9rem;
+            color: #1f555b;
+        }
+        .faq-row strong {
+            color: #0b4a4c;
+            font-weight: 600;
+        }
+
+        /* --- 页尾访问提示 --- */
+        .site-footer {
+            padding: 28px 28px 34px;
+            border-top: 1px solid #dcebef;
+            margin-top: 6px;
+            background: #fafdfd;
+        }
+        .footer-inner {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+        .footer-note {
+            font-size: 0.9rem;
+            color: #2e6769;
+            max-width: 500px;
+        }
+        .footer-note a {
+            color: #1b7877;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid #b0d5d7;
+        }
+        .footer-note a:hover {
+            border-bottom-color: #1b7877;
+            color: #095053;
+        }
+        .footer-tagline {
+            font-size: 0.8rem;
+            background: #d3eaed;
+            padding: 4px 18px;
+            border-radius: 40px;
+            color: #174e52;
+            white-space: nowrap;
+        }
+
+        /* --- 移动端响应 --- */
+        @media (max-width: 850px) {
+            .card-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 16px;
+                padding: 12px 20px 28px;
+            }
+            .context-card {
+                margin-left: 18px;
+                margin-right: 18px;
+                padding: 16px 18px;
+            }
+            .hero h1 { font-size: 1.8rem; }
+        }
+        @media (max-width: 580px) {
+            body { padding: 0 12px 32px; }
+            .page-wrap { border-radius: 20px; margin-top: 14px; }
+            .hero { padding: 36px 18px 32px; }
+            .hero h1 { font-size: 1.6rem; }
+            .card-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+                padding: 10px 16px 24px;
+            }
+            .card-item { padding: 20px 18px 22px; }
+            .context-card { flex-direction: column; gap: 6px; margin: 16px 14px 14px; }
+            .link-embed-area { padding: 6px 16px 6px; }
+            .faq-mini { margin: 12px 14px 16px; padding: 16px 16px 14px; }
+            .site-footer { padding: 22px 18px 26px; }
+            .footer-inner { flex-direction: column; align-items: flex-start; }
+        }
+        @media (max-width: 400px) {
+            .hero-badge { font-size: 0.6rem; padding: 3px 10px; }
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrap">
+
+    <!-- hero 横幅 -->
+    <div class="hero">
+        <div class="hero-badge">✦ 杂志专题 · 再度光临</div>
+        <h1>华体会 · 收藏此刻<br>让关注成为习惯</h1>
+        <p>一次次回访，是对熟悉的信任。我们在这里，始终以温和的方式等待每一次重逢。</p>
+    </div>
+
+    <!-- 背景说明卡片 -->
+    <div class="context-card">
+        <span class="label">背景</span>
+        <span class="text">从初次接触，到反复驻足——许多朋友选择将 <a href="https://portals-hth.com" style="color:#1b7877;text-decoration:underline;border:none;font-weight:500;">华体会</a> 放在浏览器书签里，或加入常用列表。这背后不只是习惯，更是一种持续的认同。</span>
+    </div>
+
+    <!-- 三段自然介绍 (网格卡片) -->
+    <div class="card-grid">
+        <div class="card-item">
+            <div class="card-icon">↻</div>
+            <h3>再次访问的节奏</h3>
+            <p>不必刻意，也无需负担。每一次回到这里，页面依旧清爽，内容自然流动，像老朋友一般熟悉。收藏夹里的位置，一直留给值得反复阅读的地方。</p>
+            <span class="tag">自然频率</span>
+        </div>
+        <div class="card-item">
+            <div class="card-icon">✦</div>
+            <h3>收藏即留白</h3>
+            <p>我们相信好的数字空间不需要喧哗。把 <a href="https://portals-hth.com" style="color:#1b6b6b;text-decoration:underline;border:none;font-weight:500;">华体会</a> 收藏起来，是给自己留一个安静的去处。不定期回来看看，总有一些细节值得再次体会。</p>
+            <span class="tag">安静角落</span>
+        </div>
+        <div class="card-item">
+            <div class="card-icon">◈</div>
+            <h3>持续关注的理由</h3>
+            <p>不是因为通知或推送，而是因为内容本身值得。从界面到文字，从功能到氛围，每一次迭代都保持一致的调性。关注，是因为这里不制造焦虑，只呈现真实。</p>
+            <span class="tag">长久陪伴</span>
+        </div>
+    </div>
+
+    <!-- 自然嵌入链接的区域 (避免硬广) -->
+    <div class="link-embed-area">
+        <p>如果你已经来过，或许会发现界面总有一些细微的优化，但内核始终未变。很多用户选择将 <a href="https://portals-hth.com">华体会</a> 固定到浏览器标签栏，或添加到手机主屏幕，只为更便捷地回到这个熟悉的空间。</p>
+        <p>我们并不鼓励过度依赖任何平台，只希望当你想找一个舒适、稳定的数字角落时，能够自然地想起这里。收藏与否，全凭你的习惯。</p>
+    </div>
+
+    <!-- FAQ 摘要 (非完整FAQ，仅为摘要感) -->
+    <div class="faq-mini">
+        <h4><span>📌</span> 常见关注点 · 摘要</h4>
+        <div class="faq-row">
+            <div><strong>▸ 再次访问</strong> — 无需重复注册，书签直达。</div>
+            <div><strong>▸ 收藏体验</strong> — 页面轻量，加载安静无扰。</div>
+            <div><strong>▸ 内容调性</strong> — 保持温和、实用、不张扬。</div>
+            <div><strong>▸ 持续关注</strong> — 跟随你的节奏，没有强制推送。</div>
+        </div>
+    </div>
+
+    <!-- 页尾访问提示 -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-note">
+                <span>如果你喜欢现在的氛围，可以把 </span>
+                <a href="https://portals-hth.com">华体会</a>
+                <span> 放进收藏夹。我们在这里，不打扰，但始终值得回访。</span>
+            </div>
+            <div class="footer-tagline">✦ 杂志专题 · 收藏与重逢</div>
+        </div>
+    </footer>
+
+</div>
+</body>
+</html>
